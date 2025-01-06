@@ -5,6 +5,8 @@ from runner_and_tournament import Runner, Tournament
 
 
 class TournamentTest(unittest.TestCase):
+    is_frozen = True
+
     @classmethod
     def setUpClass(cls):
         cls.all_results = {}
@@ -22,6 +24,7 @@ class TournamentTest(unittest.TestCase):
                 form_result[place] = runner.name
             print(form_result)
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tournaments_1(self):
         tournament1 = Tournament(90, self.runner1, self.runner3)
         result1 = tournament1.start()
@@ -30,6 +33,7 @@ class TournamentTest(unittest.TestCase):
                              'Дистанция слишком мала для замеров')
         self.assertTrue(result1[max(result1.keys())] == 'Ник')
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tournaments_2(self):
         tournament2 = Tournament(90, self.runner2, self.runner3)
         result2 = tournament2.start()
@@ -38,6 +42,7 @@ class TournamentTest(unittest.TestCase):
                              'Дистанция слишком мала для замеров')
         self.assertTrue(result2[max(result2.keys())] == 'Ник')
 
+    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_tournaments_3(self):
         tournament3 = Tournament(90, self.runner1, self.runner2, self.runner3)
         result3 = tournament3.start()
